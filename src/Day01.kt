@@ -1,10 +1,12 @@
 import kotlin.math.abs
 
 fun main() {
+    val regex = "\\s+".toRegex()
+
     fun split(input: List<String>) = input
-        .map { it.split("\\s+".toRegex()) }
+        .map { it.split(regex) }
         .map { Pair(it[0].toInt(), it[1].toInt()) }
-        .fold(Pair(listOf<Int>(), listOf<Int>())) { acc, pair ->
+        .fold(Pair(emptyList<Int>(), emptyList<Int>())) { acc, pair ->
             with(acc) { Pair(first + pair.first, second + pair.second) }
         }
 
