@@ -42,7 +42,7 @@ fun main() {
     checkEq(part1(testInput.lines()), 2)
     checkEq(part2(testInput.lines()), 4)
 
-    val input = readInput("Day02")
+    val input = readInputLines("Day02")
     part1(input).println()
     part2(input).println()
 }
