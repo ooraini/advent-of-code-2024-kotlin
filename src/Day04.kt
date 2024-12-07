@@ -1,4 +1,4 @@
-enum class Direction {
+enum class Day04Direction {
     UP, DOWN, LEFT, RIGHT, UP_RIGHT, DOWN_RIGHT, DOWN_LEFT, UP_LEFT;
 
     fun transform(pair: Pair<Int, Int>): Pair<Int, Int> {
@@ -38,7 +38,7 @@ fun main() {
 
     fun List<List<Char>>.safeSlice(
         point: Pair<Int, Int>,
-        direction: Direction,
+        direction: Day04Direction,
         size: Int = 4
     ): String {
         val (x, y) = point
@@ -49,7 +49,7 @@ fun main() {
     fun part1(input: String): Int {
         val grid = grid(input)
         return grid.points()
-            .flatMap { point -> Direction.entries.map { grid.safeSlice(point, it) } }
+            .flatMap { point -> Day04Direction.entries.map { grid.safeSlice(point, it) } }
             .count { it == "XMAS" }
     }
 
@@ -57,10 +57,10 @@ fun main() {
         val grid = grid(input)
         return grid.points().count { (x, y) ->
             listOf(
-                grid.safeSlice(Pair(x - 1, y - 1), Direction.DOWN_RIGHT, size = 3),
-                grid.safeSlice(Pair(x + 1, y - 1), Direction.DOWN_LEFT, size = 3),
-                grid.safeSlice(Pair(x + 1, y + 1), Direction.UP_LEFT, size = 3),
-                grid.safeSlice(Pair(x - 1, y + 1), Direction.UP_RIGHT, size = 3)
+                grid.safeSlice(Pair(x - 1, y - 1), Day04Direction.DOWN_RIGHT, size = 3),
+                grid.safeSlice(Pair(x + 1, y - 1), Day04Direction.DOWN_LEFT, size = 3),
+                grid.safeSlice(Pair(x + 1, y + 1), Day04Direction.UP_LEFT, size = 3),
+                grid.safeSlice(Pair(x - 1, y + 1), Day04Direction.UP_RIGHT, size = 3)
             ).count { it == "MAS" } >= 2
         }
     }
